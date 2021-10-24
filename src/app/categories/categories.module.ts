@@ -1,10 +1,15 @@
 import { NgModule } from "@angular/core";
+import { HttpClientModule } from "@angular/common/http";
+
+import { CategoriesService } from "./services/categories.service";
 
 @NgModule({
   declarations:[],
-  imports:[],
+  imports:[
+    HttpClientModule
+  ],
   exports:[],
-  providers:[]
+  providers:[CategoriesService]
 })
 
 export class CategoriesModule{
