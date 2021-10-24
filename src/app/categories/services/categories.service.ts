@@ -6,7 +6,7 @@ import { Category } from "../models/category.model";
 
 export class CategoriesService{
 
-  url_firebase = "https://movieapp-61f41-default-rtdb.firebaseio.com/categories";
+  private url_firebase = "https://movieapp-61f41-default-rtdb.firebaseio.com/categories";
 
   constructor(private http:HttpClient){}
 
