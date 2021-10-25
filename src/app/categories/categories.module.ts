@@ -16,7 +16,8 @@ import { CategoriesComponent } from './categories/categories.component';
     CategoriesRoutingModule
   ],
   exports:[
-    CategoriesHomeComponent
+    CategoriesHomeComponent,
+    CategoriesComponent
   ],
   providers:[CategoriesService]
 })

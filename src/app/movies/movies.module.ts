@@ -5,6 +5,8 @@ import { MoviesRoutingModule } from "./movies-routing.module";
 import { MoviesComponent } from './movies/movies.component';
 import { MovieComponent } from './movie/movie.component';
 import { MovieCreateComponent } from './movie-create/movie-create.component';
+import { BrowserModule } from "@angular/platform-browser";
+import { CategoriesModule } from "../categories/categories.module";
 
 @NgModule({
   declarations:[
@@ -14,12 +16,16 @@ import { MovieCreateComponent } from './movie-create/movie-create.component';
     MovieCreateComponent
   ],
   imports:[
+    BrowserModule,
     HttpClientModule,
-    MoviesRoutingModule
+    MoviesRoutingModule,
+    CategoriesModule
   ],
   exports:[
     MoviesHomeComponent,
-    MoviesComponent
+    MoviesComponent,
+    MovieComponent,
+    MovieCreateComponent
   ],
   providers:[]
 })
