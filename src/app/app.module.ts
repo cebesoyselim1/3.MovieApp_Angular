@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { MoviesModule } from './movies/movies.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { CategoriesModule } from './categories/categories.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { NavbarComponent } from './navbar/navbar.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MoviesModule
+    MoviesModule,
+    CategoriesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

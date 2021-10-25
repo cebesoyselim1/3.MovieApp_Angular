@@ -1,1 +1,5 @@
-<p>categories works!</p>
+
+<ul class="list-group">
+  <li class="list-group-item list-group-item-action active">All Categories</li>
+  <li class="list-group-item list-group-item-action" *ngFor="let category of GetCategories()">{{category.name}}</li>
+</ul>
