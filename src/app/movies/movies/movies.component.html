@@ -5,7 +5,9 @@
       <app-categories></app-categories>
     </div>
     <div class="col-md-8">
-      <app-movie></app-movie>
+      <div *ngFor="let movie of GetMovies()">
+        <app-movie *ngIf="movie" [movieInput]="movie"></app-movie>
+      </div>
     </div>
   </div>
 </div>

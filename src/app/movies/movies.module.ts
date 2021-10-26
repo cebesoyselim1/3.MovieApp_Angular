@@ -7,6 +7,7 @@ import { MovieComponent } from './movie/movie.component';
 import { MovieCreateComponent } from './movie-create/movie-create.component';
 import { BrowserModule } from "@angular/platform-browser";
 import { CategoriesModule } from "../categories/categories.module";
+import { MoviesService } from "./services/movies.service";
 
 @NgModule({
   declarations:[
@@ -27,7 +28,7 @@ import { CategoriesModule } from "../categories/categories.module";
     MovieComponent,
     MovieCreateComponent
   ],
-  providers:[]
+  providers:[MoviesService]
 })
 
 export class MoviesModule{
