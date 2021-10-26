@@ -27,7 +27,7 @@ export class CategoryCreateComponent {
       const category = new Category("",this.categoryForm.value.name);
 
       this.categoriesSerive.AddCategory(category).subscribe((data) => {
-        console.log(`${data} has successfully created.`);
+        console.log(`${data} has been created.`);
         this.router.navigate(["/movies"]);
       },err => this.errorMessage = err)
     }

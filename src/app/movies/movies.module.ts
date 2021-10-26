@@ -8,6 +8,7 @@ import { MovieCreateComponent } from './movie-create/movie-create.component';
 import { BrowserModule } from "@angular/platform-browser";
 import { CategoriesModule } from "../categories/categories.module";
 import { MoviesService } from "./services/movies.service";
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations:[
@@ -20,7 +21,8 @@ import { MoviesService } from "./services/movies.service";
     BrowserModule,
     HttpClientModule,
     MoviesRoutingModule,
-    CategoriesModule
+    CategoriesModule,
+    ReactiveFormsModule
   ],
   exports:[
     MoviesHomeComponent,

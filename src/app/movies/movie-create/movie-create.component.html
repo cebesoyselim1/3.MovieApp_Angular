@@ -1,1 +1,54 @@
-<p>movie-create works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-lg-6 mx-auto">
+      <form class="form" [formGroup]="movieForm" (ngSubmit)="CreateMovie()">
+        <h1 class="display-4 text-muted mb-3">Creating Movie</h1>
+
+        <div class="form-group mb-2">
+          <label class="form-text">Movie Title</label>
+          <input formControlName="title" type="text" class="form-control text-muted">
+          <div class="alert alert-danger" *ngIf="movieForm.controls.title.touched && movieForm.controls.title.invalid">
+            <div *ngIf="movieForm.controls.title.errors?.required">
+              Required.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group mb-2">
+          <label class="form-text">Movie Description</label>
+          <input formControlName="description" type="text" class="form-control text-muted">
+          <div class="alert alert-danger" *ngIf="movieForm.controls.description.touched && movieForm.controls.description.invalid">
+            <div *ngIf="movieForm.controls.description.errors?.required">
+              Required.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group mb-2">
+          <label class="form-text">Movie ImageUrl</label>
+          <input formControlName="imageUrl" type="text" class="form-control text-muted">
+          <div class="alert alert-danger" *ngIf="movieForm.controls.imageUrl.touched && movieForm.controls.imageUrl.invalid">
+            <div *ngIf="movieForm.controls.imageUrl.errors?.required">
+              Required.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group mb-2">
+          <label class="form-text">Movie Category</label>
+          <select formControlName="categoryId" class="form-select text-muted">
+            <option value="">Select...</option>
+            <option value="{{category.id}}" *ngFor="let category of GetCategories()">{{category.name}}</option>
+          </select>
+          <div class="alert alert-danger" *ngIf="movieForm.controls.categoryId.touched && movieForm.controls.categoryId.invalid">
+            <div *ngIf="movieForm.controls.categoryId.errors?.required">
+              Required.
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-outline-primary w-100 mt-2">Add Movie</button>
+      </form>
+    </div>
+  </div>
+</div>

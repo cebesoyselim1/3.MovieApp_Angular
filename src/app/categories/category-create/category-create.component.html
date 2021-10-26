@@ -11,7 +11,7 @@
 
         <div class="form-group mb-2">
           <label class="form-text">Category Name</label>
-          <input formControlName="name" type="text" class="form-control">
+          <input formControlName="name" type="text" class="form-control text-muted">
           <div class="alert alert-danger" *ngIf="categoryForm.controls.name.touched && categoryForm.controls.name.invalid">
             <div *ngIf="categoryForm.controls.name.errors?.required">
               Required.
