@@ -31,6 +31,9 @@
             <div *ngIf="movieForm.controls.imageUrl.errors?.required">
               Required.
             </div>
+            <div *ngIf="movieForm.controls.imageUrl.errors?.wrongExtension">
+              Extension of Image must be .jgp,.jpeg or .png.
+            </div>
           </div>
         </div>
 

@@ -5,6 +5,7 @@ import { Category } from 'src/app/categories/models/category.model';
 import { CategoriesService } from 'src/app/categories/services/categories.service';
 import { Movie } from '../models/movie.model';
 import { MoviesService } from '../services/movies.service';
+import { ImageValidator } from '../validators/image.validator';
 
 @Component({
   selector: 'app-movie-create',
@@ -29,7 +30,7 @@ export class MovieCreateComponent implements OnInit {
   movieForm = new FormGroup({
     title: new FormControl("",[Validators.required]),
     description: new FormControl("",[Validators.required]),
-    imageUrl: new FormControl("",[Validators.required]),
+    imageUrl: new FormControl("",[Validators.required,ImageValidator.isValidExtension]),
     categoryId: new FormControl("",[Validators.required])
   })
 
