@@ -10,6 +10,7 @@ import { MoviesService } from '../services/movies.service';
 export class MoviesComponent implements OnInit {
 
   private movies:Movie[] = [];
+  searchedText:string = "";
 
   constructor(private moviesService:MoviesService) { }
 

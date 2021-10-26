@@ -8,8 +8,9 @@ import { MovieCreateComponent } from './movie-create/movie-create.component';
 import { BrowserModule } from "@angular/platform-browser";
 import { CategoriesModule } from "../categories/categories.module";
 import { MoviesService } from "./services/movies.service";
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { SummaryPipe } from "./pipes/summary.pipe";
+import { SearchPipe } from "./pipes/search.pipe";
 
 @NgModule({
   declarations:[
@@ -17,14 +18,16 @@ import { SummaryPipe } from "./pipes/summary.pipe";
     MoviesComponent,
     MovieComponent,
     MovieCreateComponent,
-    SummaryPipe
+    SummaryPipe,
+    SearchPipe
   ],
   imports:[
     BrowserModule,
     HttpClientModule,
     MoviesRoutingModule,
     CategoriesModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   exports:[
     MoviesHomeComponent,

@@ -5,7 +5,11 @@
       <app-categories></app-categories>
     </div>
     <div class="col-md-8">
-      <div *ngFor="let movie of GetMovies()">
+      <div class="form-group mb-4">
+        <input [(ngModel)]="searchedText" type="text" class="form-control text-muted" placeholder="Search...">
+        <label class="form-text" *ngIf="searchedText">Searched text : {{searchedText}}</label>
+      </div>
+      <div *ngFor="let movie of GetMovies() | search : searchedText">
         <app-movie *ngIf="movie" [movieInput]="movie"></app-movie>
       </div>
     </div>
