@@ -9,13 +9,15 @@ import { BrowserModule } from "@angular/platform-browser";
 import { CategoriesModule } from "../categories/categories.module";
 import { MoviesService } from "./services/movies.service";
 import { ReactiveFormsModule } from "@angular/forms";
+import { SummaryPipe } from "./pipes/summary.pipe";
 
 @NgModule({
   declarations:[
     MoviesHomeComponent,
     MoviesComponent,
     MovieComponent,
-    MovieCreateComponent
+    MovieCreateComponent,
+    SummaryPipe
   ],
   imports:[
     BrowserModule,
