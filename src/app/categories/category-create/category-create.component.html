@@ -1,1 +1,30 @@
-<p>category-create works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-lg-6 mx-auto">
+      <form class="form" [formGroup]="categoryForm" (ngSubmit)="CreateCategory()">
+
+        <h1 class="display-4 text-muted mb-3">Creating Category</h1>
+
+        <div class="alert alert-danger" *ngIf="errorMessage">
+          {{errorMessage}}
+        </div>
+
+        <div class="form-group mb-2">
+          <label class="form-text">Category Name</label>
+          <input formControlName="name" type="text" class="form-control">
+          <div class="alert alert-danger" *ngIf="categoryForm.controls.name.touched && categoryForm.controls.name.invalid">
+            <div *ngIf="categoryForm.controls.name.errors?.required">
+              Required.
+            </div>
+            <div *ngIf="categoryForm.controls.name.errors?.maxlength">
+              Category name must have at most {{categoryForm.controls.name.errors?.maxlength.requiredLength}} characters.
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-outline-primary w-100 mt-2">Add Category</button>
+
+      </form>
+    </div>
+  </div>
+</div>
