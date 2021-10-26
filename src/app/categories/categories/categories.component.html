@@ -1,5 +1,17 @@
 
-<ul class="list-group mb-4">
-  <li class="list-group-item list-group-item-action active">All Categories</li>
-  <li class="list-group-item list-group-item-action" *ngFor="let category of GetCategories()">{{category.name}}</li>
-</ul>
+<div *ngIf="GetCategories().length > 0 then showCategories else noCategories"></div>
+
+<ng-template #noCategories>
+  <div class="alert alert-danger">
+    No categories found.
+  </div>
+</ng-template>
+
+<ng-template #showCategories>
+  <ul class="list-group mb-4">
+    <li class="list-group-item list-group-item-action active">All Categories</li>
+    <li class="list-group-item list-group-item-action" *ngFor="let category of GetCategories()">{{category.name}}</li>
+  </ul>
+</ng-template>
+
+
