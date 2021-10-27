@@ -8,8 +8,12 @@
         <h3 class="card-title">
           {{movieInput.title}}
         </h3>
-        <div class="card-text">
+        <div class="card-text mb-3">
           {{movieInput.description | summary:10}}
+        </div>
+        <div class="btn-group">
+          <button class="btn btn-outline-success">Add to List</button>
+          <button routerLink="/movies/{{movieInput.id}}" class="btn btn-outline-primary">Show Details</button>
         </div>
       </div>
     </div>

@@ -1,0 +1,26 @@
+
+<div *ngIf="GetMovie() then showMovie else noMovie"></div>
+
+<ng-template #noMovie>
+  <div class="container">
+    <div class="alert alert-danger">
+      No Movie Found with given Id.
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #showMovie>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-lg-6 mx-auto">
+        <div class="card">
+          <img src="{{GetMovie().imageUrl}}" alt="movieImage" class="card-img-top">
+          <div class="card-body">
+            <h3 class="card-title">{{GetMovie().title}}</h3>
+            <div class="card-text">{{GetMovie().description}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

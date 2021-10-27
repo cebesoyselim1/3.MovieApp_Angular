@@ -11,6 +11,7 @@ import { MoviesService } from "./services/movies.service";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { SummaryPipe } from "./pipes/summary.pipe";
 import { SearchPipe } from "./pipes/search.pipe";
+import { MovieDetailsComponent } from './movie-details/movie-details.component';
 
 @NgModule({
   declarations:[
@@ -19,7 +20,8 @@ import { SearchPipe } from "./pipes/search.pipe";
     MovieComponent,
     MovieCreateComponent,
     SummaryPipe,
-    SearchPipe
+    SearchPipe,
+    MovieDetailsComponent
   ],
   imports:[
     BrowserModule,
