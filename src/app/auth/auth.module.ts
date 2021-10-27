@@ -5,6 +5,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { AuthRoutingModule } from "./auth-routing.module";
 import { AuthService } from "./services/auth.service";
 import { HttpClientModule } from "@angular/common/http";
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations:[
@@ -14,7 +15,8 @@ import { HttpClientModule } from "@angular/common/http";
   imports:[
     BrowserModule,
     AuthRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   exports:[],
   providers:[AuthService]
