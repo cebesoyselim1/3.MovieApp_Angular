@@ -1,18 +1,38 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 col-lg-6 mx-auto">
-      <form class="form">
+      <form [formGroup]="authForm" class="form" (ngSubmit)="AuthCheck()">
 
         <h1 class="display-4 text-muted">Authentication</h1>
 
+        <div class="alert alert-danger" *ngIf="errorMessage">
+          {{errorMessage}}
+        </div>
+
         <div class="form-group mb-2">
           <label class="form-text">Email</label>
-          <input type="text" class="form-control text-muted">
+          <input formControlName="email" type="text" class="form-control text-muted">
+          <div class="alert alert-danger" *ngIf="authForm.controls.email.touched && authForm.controls.email.invalid">
+            <div *ngIf="authForm.controls.email.errors?.required">
+              Required.
+            </div>
+            <div *ngIf="authForm.controls.email.errors?.email">
+              Error: Wrong email format.
+            </div>
+          </div>
         </div>
 
         <div class="form-group mb-2">
           <label class="form-text">Password</label>
-          <input type="password" class="form-control text-muted">
+          <input formControlName="password" type="password" class="form-control text-muted">
+          <div class="alert alert-danger" *ngIf="authForm.controls.password.touched && authForm.controls.password.invalid">
+            <div *ngIf="authForm.controls.password.errors?.required">
+              Required.
+            </div>
+            <div *ngIf="authForm.controls.password.errors?.minlength">
+              Password must have at least {{authForm.controls.password.errors?.minlength?.requiredLength}} characters.
+            </div>
+          </div>
         </div>
 
         <button #btnSubmit type="submit" class="btn btn-outline-success mt-3" style="width: 45%;">Sign In</button>
