@@ -5,7 +5,6 @@ import { CategoriesHomeComponent } from "./categories/categories-home/categories
 
 const routes:Routes = [
   { path:"", redirectTo:"movies", pathMatch:"full" },
-  { path:"auth", component: AuthComponent}
 ]
 
 @NgModule({

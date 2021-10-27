@@ -7,6 +7,7 @@ import { MoviesModule } from './movies/movies.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CategoriesModule } from './categories/categories.module';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CategoriesModule } from './categories/categories.module';
     BrowserModule,
     AppRoutingModule,
     MoviesModule,
-    CategoriesModule
+    CategoriesModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
