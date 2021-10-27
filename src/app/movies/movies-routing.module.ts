@@ -7,7 +7,8 @@ import { MoviesComponent } from "./movies/movies.component";
 const routes:Routes = [
   { path: "movies", component: MoviesHomeComponent, children: [
     { path: "", component: MoviesComponent },
-    { path: "create", component: MovieCreateComponent }
+    { path: "create", component: MovieCreateComponent },
+    { path: "category/:categoryId", component: MoviesComponent }
   ]},
 
 ]

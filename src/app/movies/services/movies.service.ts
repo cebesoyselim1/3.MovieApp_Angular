@@ -21,7 +21,7 @@ export class MoviesService{
         for(let key in datas){
           datas[key].id = key;
           if(categoryId){
-            if(key == categoryId){ movies.push(datas[key]); }
+            if(datas[key].categoryId == categoryId){ movies.push(datas[key]); }
           }else{
             movies.push(datas[key]);
           }
