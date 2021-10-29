@@ -11,25 +11,23 @@ export class AuthErrorInterceptor implements HttpInterceptor{
   }
 
   HandleError(err:HttpErrorResponse){
-
+    console.log(err.status)
     let errorMessage = "";
 
     if(!navigator.onLine){
       return throwError("Internet connection lost.");
     }
 
-    if(err.error.error){
-      if(err.error.error.status == 400) errorMessage = "400 : Bad Request";
-      if(err.error.error.status == 401) errorMessage = "401 : Unauthorized";
-      if(err.error.error.status == 403) errorMessage = "403 : Forbidden";
-      if(err.error.error.status == 404) errorMessage = "404 : Not Found";
-      if(err.error.error.status == 408) errorMessage = "408 : Request Timeout";
-      if(err.error.error.status == 500) errorMessage = "500 : Internal Server Error";
-      if(err.error.error.status == 501) errorMessage = "501 : Not Implemented";
-      if(err.error.error.status == 502) errorMessage = "502 : Bad Gateway";
-      if(err.error.error.status == 503) errorMessage = "503 : Service Unavailable";
-      if(err.error.error.status == 504) errorMessage = "504 : Gateway Timeout";
-    }
+    if(err.status == 400) errorMessage = "400 : Bad Request";
+    if(err.status == 401) errorMessage = "401 : Unauthorized";
+    if(err.status == 403) errorMessage = "403 : Forbidden";
+    if(err.status == 404) errorMessage = "404 : Not Found";
+    if(err.status == 408) errorMessage = "408 : Request Timeout";
+    if(err.status == 500) errorMessage = "500 : Internal Server Error";
+    if(err.status == 501) errorMessage = "501 : Not Implemented";
+    if(err.status == 502) errorMessage = "502 : Bad Gateway";
+    if(err.status == 503) errorMessage = "503 : Service Unavailable";
+    if(err.status == 504) errorMessage = "504 : Gateway Timeout";
 
     switch(err.error.error.message){
       case "EMAIL_EXISTS":

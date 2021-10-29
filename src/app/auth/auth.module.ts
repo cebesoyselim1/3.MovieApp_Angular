@@ -7,6 +7,7 @@ import { AuthService } from "./services/auth.service";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { ReactiveFormsModule } from "@angular/forms";
 import { AuthErrorInterceptor } from "./interceptors/authError.interceptor";
+import { AuthInterceptor } from "./interceptors/auth.interceptor";
 
 @NgModule({
   declarations:[
@@ -22,7 +23,8 @@ import { AuthErrorInterceptor } from "./interceptors/authError.interceptor";
   exports:[],
   providers:[
     AuthService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthErrorInterceptor, multi: true}
+    { provide: HTTP_INTERCEPTORS, useClass: AuthErrorInterceptor, multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ]
 })
 
