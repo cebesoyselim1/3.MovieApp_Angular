@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthService } from '../auth/services/auth.service';
 
 @Component({
@@ -15,7 +14,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.user.subscribe((user) => {
-      if(user) this.isAuthenticated = true;
+      if(user?.token) this.isAuthenticated = true;
       else this.isAuthenticated = false;
     })
   }
