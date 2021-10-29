@@ -56,6 +56,7 @@ export class AuthComponent implements OnInit {
         this.authService.SignIn(requestModel).subscribe((response) => {
           const user = new UserModel(response.localId,response.email,
                                     new Date(new Date().getTime() + Number(response.expiresIn) * 1000),response.idToken);
+          this.authService.SaveTokenLS(user);
           this.authService.user.next(user);
           this.router.navigate(["/movies"]);
         },err => this.errorMessage = err)
@@ -63,6 +64,7 @@ export class AuthComponent implements OnInit {
         this.authService.SignUp(requestModel).subscribe((response) => {
           const user = new UserModel(response.localId,response.email,
                                     new Date(new Date().getTime() + Number(response.expiresIn) * 1000),response.idToken);
+          this.authService.SaveTokenLS(user);
           this.authService.user.next(user);
           this.router.navigate(["/movies"]);
         },err => this.errorMessage = err)

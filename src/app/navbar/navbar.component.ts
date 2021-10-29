@@ -27,6 +27,7 @@ export class NavbarComponent implements OnInit {
   SignOut(){
     //@ts-ignore
     this.authService.user.next(null);
+    localStorage.removeItem("auth");
   }
 
 }

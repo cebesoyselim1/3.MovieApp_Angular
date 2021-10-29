@@ -26,4 +26,19 @@ export class AuthService{
   SignIn(req:RequestModel):Observable<ResponseModel>{
     return this.http.post<ResponseModel>(this.url_signIn + this.api_key,req);
   }
+
+  SaveTokenLS(user:UserModel){
+    localStorage.setItem("auth",JSON.stringify(user));
+  }
+
+  Authentication(){
+    //@ts-ignore
+    let userLS = JSON.parse(localStorage.getItem("auth"));
+    if(userLS){
+      let user = new UserModel(userLS.id,userLS.email,
+                              new Date(userLS.expiresDate),
+                              userLS._token);
+      this.user.next(user);
+    }
+  }
 }
