@@ -1,9 +1,14 @@
 import { NgModule } from "@angular/core";
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
-  declarations:[],
+  declarations:[
+    LoadingComponent
+  ],
   imports:[],
-  exports:[],
+  exports:[
+    LoadingComponent
+  ],
   providers:[]
 })
 

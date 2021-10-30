@@ -6,13 +6,26 @@
     </div>
     <div class="col-md-8">
 
-      <div class="form-group mb-4">
-        <input [(ngModel)]="searchedText" type="text" class="form-control text-muted" placeholder="Search...">
-        <label class="form-text" *ngIf="searchedText">Searched text : {{searchedText}}</label>
+      <h1 class="display-3 text-primary text-center mb-3">Movies</h1>
+
+      <app-loading *ngIf="isLoadingMode"></app-loading>
+
+      <div class="alert alert-danger my-2" *ngIf="errorMessage">
+        {{errorMessage}}
       </div>
 
-      <div *ngIf="(GetMovies() | search:searchedText).length > 0 then movieCount else noMovies"></div>
-      <div *ngIf="(GetMovies() | search:searchedText).length > 0 then showMovies"></div>
+
+
+      <div *ngIf="!isLoadingMode">
+        <div class="form-group mb-4">
+          <input [(ngModel)]="searchedText" type="text" class="form-control text-muted" placeholder="Search...">
+          <label class="form-text" *ngIf="searchedText">Searched text : {{searchedText}}</label>
+        </div>
+
+        <div *ngIf="(GetMovies() | search:searchedText).length > 0 then movieCount else noMovies"></div>
+
+        <div *ngIf="(GetMovies() | search:searchedText).length > 0 then showMovies"></div>
+      </div>
 
       <ng-template #movieCount>
         <div class="alert alert-warning">

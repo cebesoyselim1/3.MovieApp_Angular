@@ -12,6 +12,8 @@ export class MovieDetailsComponent implements OnInit {
 
   //@ts-ignore
   private movie:Movie = null;
+  errorMessage = "";
+  isLoadingMode = false;
 
   constructor(private moviesSerive:MoviesService,
               private activatedRoute:ActivatedRoute) { }
@@ -19,9 +21,11 @@ export class MovieDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((route) => {
       if(route.movieId){
+        this.isLoadingMode = true;
         this.moviesSerive.GetMovieById(route.movieId).subscribe((movie) => {
           this.movie = movie;
-        })
+          this.isLoadingMode = false;
+        },err => {this.errorMessage = ""; this.isLoadingMode = false;})
       }
     })
   }

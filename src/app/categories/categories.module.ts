@@ -9,6 +9,7 @@ import { CategoryCreateComponent } from './category-create/category-create.compo
 import { CategoriesEditComponent } from './categories-edit/categories-edit.component';
 import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
   declarations:[
@@ -22,7 +23,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     HttpClientModule,
     CategoriesRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
   exports:[
     CategoriesHomeComponent,

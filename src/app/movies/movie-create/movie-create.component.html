@@ -1,8 +1,16 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 col-lg-6 mx-auto">
-      <form class="form" [formGroup]="movieForm" (ngSubmit)="CreateMovie()">
-        <h1 class="display-4 text-muted mb-3">Creating Movie</h1>
+
+      <h1 class="display-4 text-muted mb-3">Creating Movie</h1>
+
+      <app-loading *ngIf="isLoadingMode"></app-loading>
+
+      <div class="alert alert-danger" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+
+      <form class="form" [formGroup]="movieForm" (ngSubmit)="CreateMovie()" *ngIf="!isLoadingMode">
 
         <div class="form-group mb-2">
           <label class="form-text">Movie Title</label>
@@ -52,6 +60,7 @@
 
         <button type="submit" class="btn btn-outline-primary w-100 mt-2">Add Movie</button>
       </form>
+
     </div>
   </div>
 </div>

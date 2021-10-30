@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { SummaryPipe } from "./pipes/summary.pipe";
 import { SearchPipe } from "./pipes/search.pipe";
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
+import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
   declarations:[
@@ -29,7 +30,8 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
     MoviesRoutingModule,
     CategoriesModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
   exports:[
     MoviesHomeComponent,

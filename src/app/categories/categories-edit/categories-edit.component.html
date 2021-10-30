@@ -3,8 +3,23 @@
   <div class="row">
     <div class="col-md-10 col-lg-8 mx-auto">
 
-      <div *ngIf="GetCategories() then showTable else noCategories"></div>
-      <div *ngIf="editMode then showForm"></div>
+      <h1 class="display-4 text-muted mb-4 text-center">
+        Categories Edit Page
+      </h1>
+
+      <div class="alert alert-danger" *ngIf="errorMessage">
+        {{errorMessage}}
+      </div>
+
+      <div *ngIf="isLoadingMode">
+        <app-loading></app-loading>
+      </div>
+
+      <div *ngIf="!isLoadingMode">
+        <div *ngIf="GetCategories() then showTable else noCategories"></div>
+
+        <div *ngIf="editMode then showForm"></div>
+      </div>
 
       <ng-template #noCategories>
         <div class="alert alert-danger">
@@ -13,9 +28,7 @@
       </ng-template>
 
       <ng-template #showTable>
-        <h1 class="display-4 text-muted mb-4 text-center">
-          Categories Edit Page
-        </h1>
+
         <table class="table table-light table-bordered table-hover table-responsive">
           <thead>
             <tr>

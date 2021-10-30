@@ -1,5 +1,17 @@
 
-<div *ngIf="GetMovie() then showMovie else noMovie"></div>
+<h1 class="display-2 text-muted text-center mb-2">
+  Movie Details
+</h1>
+
+<div *ngIf="!isLoadingMode">
+  <div *ngIf="GetMovie() then showMovie else noMovie"></div>
+</div>
+
+<div class="alert alert-danger" *ngIf="errorMessage">
+  {{errorMessage}}
+</div>
+
+<app-loading *ngIf="isLoadingMode"></app-loading>
 
 <ng-template #noMovie>
   <div class="container">

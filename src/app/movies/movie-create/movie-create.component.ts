@@ -16,6 +16,7 @@ export class MovieCreateComponent implements OnInit {
 
   private categories:Category[] = [];
   errorMessage = "";
+  isLoadingMode = false;
 
   constructor(private moviesService:MoviesService,
               private categoriesService:CategoriesService,
@@ -35,7 +36,9 @@ export class MovieCreateComponent implements OnInit {
   })
 
   CreateMovie(){
+    this.errorMessage = "";
     if(this.movieForm.valid){
+      this.isLoadingMode = true;
       const movie = new Movie("",this.movieForm.value.title,
                               this.movieForm.value.description,
                               new Date().getTime().toString(),
@@ -43,9 +46,9 @@ export class MovieCreateComponent implements OnInit {
                               this.movieForm.value.categoryId);
 
       this.moviesService.AddMovie(movie).subscribe((data) => {
-        console.log(`${data} has been created.`);
+        this.isLoadingMode = false;
         this.router.navigate(["/movies"]);
-      },err => this.errorMessage = err)
+      },err => {this.errorMessage = err; this.isLoadingMode = false;})
     }
   }
 

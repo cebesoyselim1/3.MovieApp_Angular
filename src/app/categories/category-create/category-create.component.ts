@@ -12,6 +12,7 @@ import { CategoriesService } from '../services/categories.service';
 export class CategoryCreateComponent {
 
   errorMessage = "";
+  isLoadingMode = false;
 
   constructor(private categoriesSerive:CategoriesService,
               private router:Router) { }
@@ -24,12 +25,13 @@ export class CategoryCreateComponent {
     this.errorMessage = "";
 
     if(this.categoryForm.valid){
+      this.isLoadingMode = true;
       const category = new Category("",this.categoryForm.value.name);
 
       this.categoriesSerive.AddCategory(category).subscribe((data) => {
-        console.log(`${data} has been created.`);
+        this.isLoadingMode = false;
         this.router.navigate(["/movies"]);
-      },err => this.errorMessage = err)
+      },err => {this.errorMessage = err; this.isLoadingMode = false;})
     }
   }
 
