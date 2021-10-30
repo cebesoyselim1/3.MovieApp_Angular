@@ -1,1 +1,73 @@
-<p>categories-edit works!</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-lg-8 mx-auto">
+
+      <div *ngIf="GetCategories() then showTable else noCategories"></div>
+      <div *ngIf="editMode then showForm"></div>
+
+      <ng-template #noCategories>
+        <div class="alert alert-danger">
+          No category found.
+        </div>
+      </ng-template>
+
+      <ng-template #showTable>
+        <h1 class="display-4 text-muted mb-4 text-center">
+          Categories Edit Page
+        </h1>
+        <table class="table table-light table-bordered table-hover table-responsive">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let category of GetCategories(); index as i" [class.table-primary] = "category.id == selectedCategory?.id">
+              <td>
+                {{i + 1}}
+              </td>
+              <td>
+                {{category.name}}
+              </td>
+              <td class="text-center">
+                <button (click)="EditCategory(category)" class="btn btn-sm btn-warning"><i class="far fa-edit"></i></button>
+              </td>
+              <td class="text-center">
+                <button (click)="DeleteCategory(category)" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </ng-template>
+
+      <ng-template #showForm>
+        <form class="form" (ngSubmit)="SaveChanges(categoryName)">
+          <ul class="list-group">
+            <li class="list-group-item py-3">
+              <button (click)="CloseEdit()" class="btn btn-sm btn-danger" style="position: absolute; top: 5px; right: 5px;">
+                <i class="fas fa-times"></i>
+              </button>
+              <div class="form-group">
+                <label class="form-text">Category Name</label>
+                <input #categoryName="ngModel" [(ngModel)]="selectedCategory.name" name="name" type="text" class="form-control" required>
+                <div class="alert alert-danger" *ngIf="categoryName.invalid && categoryName.touched">
+                  <div *ngIf="categoryName.control.errors?.required">
+                    Required.
+                  </div>
+                </div>
+              </div>
+            </li>
+            <div class="list-group-item">
+              <button class="btn btn-outline-primary w-100">Edit</button>
+            </div>
+          </ul>
+        </form>
+      </ng-template>
+
+    </div>
+  </div>
+</div>

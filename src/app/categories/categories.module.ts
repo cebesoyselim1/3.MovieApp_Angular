@@ -8,7 +8,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { CategoryCreateComponent } from './category-create/category-create.component';
 import { CategoriesEditComponent } from './categories-edit/categories-edit.component';
 import { BrowserModule } from "@angular/platform-browser";
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations:[
@@ -21,7 +21,8 @@ import { ReactiveFormsModule } from "@angular/forms";
     BrowserModule,
     HttpClientModule,
     CategoriesRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   exports:[
     CategoriesHomeComponent,

@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { map, tap } from "rxjs/operators";
 import { Category } from "../models/category.model";
 
 @Injectable()
@@ -41,6 +41,24 @@ export class CategoriesService{
   AddCategory(category:Category):Observable<Category>{
     const newUrl = `${this.url_firebase}.json`;
     return this.http.post(newUrl,category).pipe(
+      map((data) => {
+        return category;
+      })
+    )
+  }
+
+  EditCategory(category:Category):Observable<Category>{
+    const newUrl = `${this.url_firebase}/${category.id}.json`;
+    return this.http.put<Category>(newUrl,category).pipe(
+      map((data) => {
+        return category;
+      })
+    )
+  }
+
+  DeleteCategory(category:Category):Observable<Category>{
+    const newUrl = `${this.url_firebase}/${category.id}.json`;
+    return this.http.delete<Category>(newUrl).pipe(
       map((data) => {
         return category;
       })
