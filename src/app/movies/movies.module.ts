@@ -13,6 +13,7 @@ import { SummaryPipe } from "./pipes/summary.pipe";
 import { SearchPipe } from "./pipes/search.pipe";
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { SharedModule } from "../shared/shared.module";
+import { MovieEditComponent } from './movie-edit/movie-edit.component';
 
 @NgModule({
   declarations:[
@@ -22,7 +23,8 @@ import { SharedModule } from "../shared/shared.module";
     MovieCreateComponent,
     SummaryPipe,
     SearchPipe,
-    MovieDetailsComponent
+    MovieDetailsComponent,
+    MovieEditComponent
   ],
   imports:[
     BrowserModule,

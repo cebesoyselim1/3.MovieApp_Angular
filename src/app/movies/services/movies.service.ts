@@ -53,4 +53,22 @@ export class MoviesService{
     )
   }
 
+  EditMovie(movie:Movie):Observable<Movie>{
+    const newUrl = `${this.url_firebase}/${movie.id}.json`;
+    return this.http.put(newUrl,movie).pipe(
+      map((data) => {
+        return movie;
+      })
+    )
+  }
+
+  DeleteMovie(movie:Movie):Observable<Movie>{
+    const newUrl = `${this.url_firebase}/${movie.id}.json`;
+    return this.http.delete(newUrl).pipe(
+      map((data) => {
+        return movie;
+      })
+    )
+  }
+
 }

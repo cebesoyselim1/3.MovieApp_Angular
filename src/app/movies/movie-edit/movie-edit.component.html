@@ -1,0 +1,139 @@
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-lg-8 mx-auto">
+
+      <h1 class="display-4 text-muted mb-4 text-center">
+        Movies Edit Page
+      </h1>
+
+      <div class="alert alert-danger" *ngIf="errorMessage">
+        {{errorMessage}}
+      </div>
+
+      <div *ngIf="isLoadingMode">
+        <app-loading></app-loading>
+      </div>
+
+      <div *ngIf="!isLoadingMode">
+        <div *ngIf="GetMovies() then showTable else noMovies"></div>
+
+        <div *ngIf="editMode then showForm"></div>
+      </div>
+
+      <ng-template #noMovies>
+        <div class="alert alert-danger">
+          No movie found.
+        </div>
+      </ng-template>
+
+      <ng-template #showTable>
+
+        <table class="table table-light table-bordered table-hover table-responsive">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>ImageUrl</th>
+              <th>Category</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let extededMovie of GetMovies(); index as i" [class.table-primary] = "extededMovie.movie.id == selectedExtendedMovie?.movie?.id">
+              <td>
+                {{i + 1}}
+              </td>
+              <td>
+                {{extededMovie.movie.title}}
+              </td>
+              <td>
+                {{extededMovie.movie.description}}
+              </td>
+              <td>
+                {{extededMovie.movie.imageUrl}}
+              </td>
+              <td>
+                {{extededMovie.categoryName}}
+              </td>
+              <td class="text-center">
+                <button (click)="EditMovie(extededMovie)" class="btn btn-sm btn-warning"><i class="far fa-edit"></i></button>
+              </td>
+              <td class="text-center">
+                <button (click)="DeleteMovie(extededMovie)" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </ng-template>
+
+      <ng-template #showForm>
+
+        <form class="form" [formGroup]="editForm" (ngSubmit)="SaveChanges()">
+          <ul class="list-group">
+            <li class="list-group-item py-3">
+              <button (click)="CloseEdit()" class="btn btn-sm btn-danger" style="position: absolute; top: 5px; right: 5px;">
+                <i class="fas fa-times"></i>
+              </button>
+
+              <div class="form-group mb-2">
+                <label class="form-text">Title</label>
+                <input formControlName="title"  type="text" class="form-control" [(ngModel)]="selectedExtendedMovie.movie.title">
+                <div class="alert alert-danger" *ngIf="editForm.controls.title.touched && editForm.controls.title.invalid">
+                  <div *ngIf="editForm.controls.title.errors?.required">
+                    Required.
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group mb-2">
+                <label class="form-text">Description</label>
+                <input formControlName="description" type="text" class="form-control" [(ngModel)]="selectedExtendedMovie.movie.description" required>
+                <div class="alert alert-danger" *ngIf="editForm.controls.description.touched && editForm.controls.description.invalid">
+                  <div *ngIf="editForm.controls.description.errors?.required">
+                    Required.
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group mb-2">
+                <label class="form-text">ImageUrl</label>
+                <input formControlName="imageUrl" type="text" class="form-control" [(ngModel)]="selectedExtendedMovie.movie.imageUrl" required ImageValidator>
+                <div class="alert alert-danger" *ngIf="editForm.controls.imageUrl.touched && editForm.controls.imageUrl.invalid">
+                  <div *ngIf="editForm.controls.imageUrl.errors?.required">
+                    Required.
+                  </div>
+                  <div *ngIf="editForm.controls.imageUrl.errors?.wrongExtension">
+                    Extension of Image must be .jgp,.jpeg or .png.
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group mb-2">
+                <label class="form-text">Category</label>
+                <select formControlName="category" class="form-select" [(ngModel)]="selectedExtendedMovie.movie.categoryId" required>
+                  <option value="">Select...</option>
+                  <option value="{{category.id}}" *ngFor="let category of GetCategories()">{{category.name}}</option>
+                </select>
+                <div class="alert alert-danger" *ngIf="editForm.controls.category.touched && editForm.controls.category.invalid">
+                  <div *ngIf="editForm.controls.category.errors?.required">
+                    Required.
+                  </div>
+                </div>
+              </div>
+
+            </li>
+            <div class="list-group-item">
+              <button class="btn btn-outline-primary w-100">Edit</button>
+            </div>
+          </ul>
+        </form>
+
+      </ng-template>
+
+    </div>
+  </div>
+</div>
