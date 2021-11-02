@@ -1,0 +1,17 @@
+
+<div *ngIf="questionPopUp?.isActive then showPopUp"></div>
+
+<ng-template #showPopUp>
+  <div class="popUp">
+    <div class="popUp-inner">
+      <button (click)="ClosePopUp()" class="popup-cancel">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="popUp-question">{{questionPopUp.question}}</div>
+      <div class="answer-container">
+        <button (click)="SubmitAnswer(answer)" class="answer" *ngFor="let answer of questionPopUp.answers">{{answer}}</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+

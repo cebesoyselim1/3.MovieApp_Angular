@@ -1,4 +1,4 @@
-
+<app-question-popup></app-question-popup>
 
 <div class="container">
   <div class="row">
@@ -17,7 +17,7 @@
       </div>
 
       <div *ngIf="!isLoadingMode">
-        <div *ngIf="GetMovies() then showTable else noMovies"></div>
+        <div *ngIf="GetMovies().length > 0 then showTable else noMovies"></div>
 
         <div *ngIf="editMode then showForm"></div>
       </div>
@@ -63,7 +63,7 @@
                 <button (click)="EditMovie(extededMovie)" class="btn btn-sm btn-warning"><i class="far fa-edit"></i></button>
               </td>
               <td class="text-center">
-                <button (click)="DeleteMovie(extededMovie)" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                <button (click)="DeleteMovieMiddleware(extededMovie)" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
               </td>
             </tr>
           </tbody>
@@ -72,7 +72,7 @@
 
       <ng-template #showForm>
 
-        <form class="form" [formGroup]="editForm" (ngSubmit)="SaveChanges()">
+        <form class="form" [formGroup]="editForm" (ngSubmit)="SaveChangesMiddleware()">
           <ul class="list-group">
             <li class="list-group-item py-3">
               <button (click)="CloseEdit()" class="btn btn-sm btn-danger" style="position: absolute; top: 5px; right: 5px;">

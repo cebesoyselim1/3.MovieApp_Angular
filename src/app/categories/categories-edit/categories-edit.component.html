@@ -1,4 +1,6 @@
 
+<app-question-popup></app-question-popup>
+
 <div class="container">
   <div class="row">
     <div class="col-md-10 col-lg-8 mx-auto">
@@ -16,7 +18,7 @@
       </div>
 
       <div *ngIf="!isLoadingMode">
-        <div *ngIf="GetCategories() then showTable else noCategories"></div>
+        <div *ngIf="GetCategories().length > 0 then showTable else noCategories"></div>
 
         <div *ngIf="editMode then showForm"></div>
       </div>
@@ -50,7 +52,7 @@
                 <button (click)="EditCategory(category)" class="btn btn-sm btn-warning"><i class="far fa-edit"></i></button>
               </td>
               <td class="text-center">
-                <button (click)="DeleteCategory(category)" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                <button (click)="DeleteCategoryMiddleware(category)" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
               </td>
             </tr>
           </tbody>
@@ -58,7 +60,7 @@
       </ng-template>
 
       <ng-template #showForm>
-        <form class="form" (ngSubmit)="SaveChanges(categoryName)">
+        <form class="form" (ngSubmit)="SaveChangesMiddleware(categoryName)">
           <ul class="list-group">
             <li class="list-group-item py-3">
               <button (click)="CloseEdit()" class="btn btn-sm btn-danger" style="position: absolute; top: 5px; right: 5px;">
