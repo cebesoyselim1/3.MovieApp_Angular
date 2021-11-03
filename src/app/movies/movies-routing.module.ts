@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AuthGuard } from "../auth/guards/auth.guard";
+import { PageNotFoundComponent } from "../page-not-found/page-not-found.component";
 import { MovieCreateComponent } from "./movie-create/movie-create.component";
 import { MovieDetailsComponent } from "./movie-details/movie-details.component";
 import { MovieEditComponent } from "./movie-edit/movie-edit.component";
@@ -13,7 +14,8 @@ const routes:Routes = [
     { path: "create", component: MovieCreateComponent },
     { path: "edit", component: MovieEditComponent },
     { path: ":movieId", component: MovieDetailsComponent },
-    { path: "category/:categoryId", component: MoviesComponent }
+    { path: "category/:categoryId", component: MoviesComponent },
+    { path: "**", component: PageNotFoundComponent }
   ]},
 ]
 

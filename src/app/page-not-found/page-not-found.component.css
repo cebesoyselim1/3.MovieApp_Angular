@@ -1,0 +1,59 @@
+.nf-container{
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #f2f2f2;
+  font-weight: bolder;
+}
+
+.nf-container .nf-inner{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  display: flex;
+  flex-direction: column;
+
+}
+
+.nf-inner .nf-text{
+  font-size: 0.8rem;
+  text-align: center;
+  color: #323232;
+}
+
+.nf-numbers{
+  font-size: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nf-numbers .nf-number{
+  text-shadow: 5px 5px 0 #761137;
+}
+
+.nf-numbers  .nf-number:nth-child(1){
+  color: #f9858b;
+}
+
+.nf-numbers  .nf-number:nth-child(2){
+  color: #ed335f;
+}
+
+.nf-numbers  .nf-number:nth-child(3){
+  color: #f9858b;
+}
+
+.nf-inner .nf-btn{
+  width: 100%;
+  border: none;
+  background-color: #ed335f;
+  color: #f2f2f2;
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 0.5rem 0;
+  border-radius: 5px;
+}
