@@ -2,8 +2,8 @@ import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest
 import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
 
-export class AuthErrorInterceptor implements HttpInterceptor{
 
+export class ErrorInterceptor implements HttpInterceptor{
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       catchError(this.HandleError)
@@ -11,7 +11,7 @@ export class AuthErrorInterceptor implements HttpInterceptor{
   }
 
   HandleError(err:HttpErrorResponse){
-    let errorMessage = "";
+    let errorMessage = "Unkown Error";
 
     if(!navigator.onLine){
       return throwError("Internet connection lost.");
@@ -28,30 +28,7 @@ export class AuthErrorInterceptor implements HttpInterceptor{
     if(err.status == 503) errorMessage = "503 : Service Unavailable";
     if(err.status == 504) errorMessage = "504 : Gateway Timeout";
 
-    switch(err.error.error.message){
-      case "EMAIL_EXISTS":
-        errorMessage = "The email address is already in use by another account.";
-        break;
-      case "OPERATION_NOT_ALLOWED":
-        errorMessage = "Password sign-in is disabled for this project.";
-        break;
-      case "TOO_MANY_ATTEMPTS_TRY_LATER":
-        errorMessage = "We have blocked all requests from this device due to unusual activity. Try again later.";
-        break;
-      case "EMAIL_NOT_FOUND":
-        errorMessage = "There is no user record corresponding to this identifier. The user may have been deleted.";
-        break;
-      case "INVALID_PASSWORD":
-        errorMessage = "The password is invalid or the user does not have a password.";
-        break;
-      case "USER_DISABLED":
-        errorMessage = "The user account has been disabled by an administrator.";
-        break;
-    }
-
-    if(errorMessage) return throwError(errorMessage);
-    else return throwError("Unknown Error.");
-
+    return throwError(errorMessage);
   }
 
 }
