@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { LoadingComponent } from './loading/loading.component';
 import { QuestionPopupComponent } from './question-popup/question-popup.component';
+import { AlertifyService } from "./services/alertify.service";
 import { QuestionPopUpService } from "./services/question-popup.service";
 
 @NgModule({
@@ -17,7 +18,8 @@ import { QuestionPopUpService } from "./services/question-popup.service";
     QuestionPopupComponent
   ],
   providers:[
-    QuestionPopUpService
+    QuestionPopUpService,
+    AlertifyService
   ]
 })
 

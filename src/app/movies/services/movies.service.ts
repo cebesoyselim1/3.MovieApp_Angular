@@ -1,8 +1,9 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { map, tap } from "rxjs/operators";
 import { Movie } from "../models/movie.model";
+import { UserMovieList } from "../models/usermovielist.model";
 
 @Injectable()
 
@@ -67,6 +68,38 @@ export class MoviesService{
     return this.http.delete(newUrl).pipe(
       map((data) => {
         return movie;
+      })
+    )
+  }
+
+  AddToList(userMovieList:UserMovieList):Observable<UserMovieList>{
+    const newUrl = `https://movieapp-61f41-default-rtdb.firebaseio.com/users/${userMovieList.userId}/movies/${userMovieList.movieId}.json`;
+    return this.http.post<UserMovieList>(newUrl,userMovieList).pipe(
+      map((data) => {
+        return userMovieList;
+      })
+    );
+  }
+
+  RemoveFromList(userMovieList:UserMovieList):Observable<UserMovieList>{
+    const newUrl = `https://movieapp-61f41-default-rtdb.firebaseio.com/users/${userMovieList.userId}/movies/${userMovieList.movieId}.json`;
+    return this.http.delete<UserMovieList>(newUrl).pipe(
+      map((data) => {
+        return userMovieList;
+      })
+    )
+  }
+
+  GetFromList(userId:string):Observable<string[]>{
+    const newUrl = `https://movieapp-61f41-default-rtdb.firebaseio.com/users/${userId}/movies.json`;
+
+    return this.http.get(newUrl).pipe(
+      map((data) => {
+        let movieList:string[] = [];
+       for(let key in data){
+         movieList.push(key);
+       }
+       return movieList;
       })
     )
   }
