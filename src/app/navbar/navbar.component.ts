@@ -9,6 +9,7 @@ import { AuthService } from '../auth/services/auth.service';
 export class NavbarComponent implements OnInit {
 
   private isAuthenticated:boolean = false;
+  private isAdmin:boolean = false;
 
   constructor(private authService:AuthService) { }
 
@@ -16,6 +17,9 @@ export class NavbarComponent implements OnInit {
     this.authService.user.subscribe((user) => {
       if(user?.token) this.isAuthenticated = true;
       else this.isAuthenticated = false;
+
+      // admin auth
+      if(user?.token){ if(user?.email == "admin@movieapp.com") this.isAdmin = true; else this.isAdmin = false;}
     })
   }
 
@@ -23,10 +27,16 @@ export class NavbarComponent implements OnInit {
     return this.isAuthenticated;
   }
 
+  GetAdminAuthAnswer():boolean{
+    return this.isAdmin;
+  }
+
   SignOut(){
     //@ts-ignore
     this.authService.user.next(null);
     localStorage.removeItem("auth");
+    this.isAuthenticated = false;
+    this.isAdmin = false;
   }
 
 }

@@ -9,10 +9,10 @@
           {{movieInput.title}}
         </h3>
         <div class="card-text mb-3">
-          {{movieInput.description | summary:10}}
+          {{movieInput.description | summary:50}}
         </div>
 
-        <div class="btn-group">
+        <div class="btn-group w-100">
           <button #toggleBtn (click)="ToggleList(toggleBtn, movieInput)" class="btn btn-sm" [ngClass]="{'btn-outline-danger':CheckList(movieInput), 'btn-outline-success':!CheckList(movieInput)}">{{!CheckList(movieInput) ? 'Add to List' : 'Remove from List'}}</button>
           <button routerLink="/movies/{{movieInput.id}}" class="btn btn-sm btn-outline-primary">Show Details</button>
         </div>

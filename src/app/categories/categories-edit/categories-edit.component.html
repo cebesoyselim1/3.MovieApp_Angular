@@ -31,32 +31,35 @@
 
       <ng-template #showTable>
 
-        <table class="table table-light table-bordered table-hover table-responsive">
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Name</th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let category of GetCategories(); index as i" [class.table-primary] = "category.id == selectedCategory?.id">
-              <td>
-                {{i + 1}}
-              </td>
-              <td>
-                {{category.name}}
-              </td>
-              <td class="text-center">
-                <button (click)="EditCategory(category)" class="btn btn-sm btn-warning"><i class="far fa-edit"></i></button>
-              </td>
-              <td class="text-center">
-                <button (click)="DeleteCategoryMiddleware(category)" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div style="overflow-x: auto;">
+          <table class="table table-light table-bordered table-hover table-responsive">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let category of GetCategories(); index as i" [class.table-primary] = "category.id == selectedCategory?.id">
+                <td>
+                  {{i + 1}}
+                </td>
+                <td>
+                  {{category.name}}
+                </td>
+                <td class="text-center">
+                  <button (click)="EditCategory(category)" class="btn btn-sm btn-warning"><i class="far fa-edit"></i></button>
+                </td>
+                <td class="text-center">
+                  <button (click)="DeleteCategoryMiddleware(category)" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
       </ng-template>
 
       <ng-template #showForm>

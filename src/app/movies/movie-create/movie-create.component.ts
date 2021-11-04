@@ -31,7 +31,7 @@ export class MovieCreateComponent implements OnInit {
   movieForm = new FormGroup({
     title: new FormControl("",[Validators.required]),
     description: new FormControl("",[Validators.required]),
-    imageUrl: new FormControl("",[Validators.required,ImageValidator.isValidExtension]),
+    imageUrl: new FormControl("",[Validators.required]),
     categoryId: new FormControl("",[Validators.required])
   })
 

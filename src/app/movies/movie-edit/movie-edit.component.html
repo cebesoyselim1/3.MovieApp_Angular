@@ -29,45 +29,35 @@
       </ng-template>
 
       <ng-template #showTable>
+        <div style="overflow-x:auto;">
+          <table class="table table-light table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let extededMovie of GetMovies(); index as i" [class.table-primary] = "extededMovie.movie.id == selectedExtendedMovie?.movie?.id">
+                <td>
+                  {{i + 1}}
+                </td>
+                <td>
+                  {{extededMovie.movie.title}}
+                </td>
+                <td class="text-center">
+                  <button (click)="EditMovie(extededMovie)" class="btn btn-sm btn-warning"><i class="far fa-edit"></i></button>
+                </td>
+                <td class="text-center">
+                  <button (click)="DeleteMovieMiddleware(extededMovie)" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-        <table class="table table-light table-bordered table-hover table-responsive">
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Title</th>
-              <th>Description</th>
-              <th>ImageUrl</th>
-              <th>Category</th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let extededMovie of GetMovies(); index as i" [class.table-primary] = "extededMovie.movie.id == selectedExtendedMovie?.movie?.id">
-              <td>
-                {{i + 1}}
-              </td>
-              <td>
-                {{extededMovie.movie.title}}
-              </td>
-              <td>
-                {{extededMovie.movie.description}}
-              </td>
-              <td>
-                {{extededMovie.movie.imageUrl}}
-              </td>
-              <td>
-                {{extededMovie.categoryName}}
-              </td>
-              <td class="text-center">
-                <button (click)="EditMovie(extededMovie)" class="btn btn-sm btn-warning"><i class="far fa-edit"></i></button>
-              </td>
-              <td class="text-center">
-                <button (click)="DeleteMovieMiddleware(extededMovie)" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
       </ng-template>
 
       <ng-template #showForm>
